@@ -2,9 +2,9 @@
 
 <suite name="Suite Demo Parallel Testing By Module Test" verbose="1" >
     <test name="Demo Parallel Testing By Module Test 01" parallel="methods">
-        <parameter name="browser" value="edge"></parameter>
         <classes>
-            <class name="BT5BT6BT7BT8BT9.testcases.LoginTest"></class>
+            <class name="AnhTesterCMS.testcases.LoginTest"></class>
+            <class name="AnhTesterCMS.testcases.CategoryTest"></class>
         </classes>
     </test>
 </suite>

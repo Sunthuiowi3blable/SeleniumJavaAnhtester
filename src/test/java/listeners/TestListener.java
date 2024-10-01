@@ -26,11 +26,6 @@ public class TestListener implements ITestListener {
     @Override //Ghi đè phương thức onTestStart của giao diện ITestListener (lớp cha)
     public void onTestStart(ITestResult iTestResult) {
         LogUtils.info("⭐ Starting test case " + iTestResult.getName());
-
-        //Nếu giá trị "RECORD_VIDEO" = true thì nó sẽ record video, bằng false thì không record video
-        if (PropertiesHelper.getValue("RECORD_VIDEO").equals("true")){
-            CaptureHelper.startRecord(iTestResult.getName());
-        }
     }
 
     //Chạy mỗi khi 1 ca kiểm thử vượt qua thành công (sau quá trình chạy). Việc ghi đè này cho phép lớp con có thể thay đổi hoặc mở rộng hành vi của phương thức đó.
@@ -41,11 +36,6 @@ public class TestListener implements ITestListener {
         //Nếu giá trị "SCREENSHOT_STEP_PASS" = true thì nó sẽ screenshot, bằng false thì không screenshot
         if (PropertiesHelper.getValue("SCREENSHOT_STEP_PASS").equals("true")){
             CaptureHelper.screenshotSuccess(iTestResult.getName());
-        }
-
-        //Nếu giá trị "RECORD_VIDEO" = true thì nó sẽ record video, bằng false thì không record video
-        if (PropertiesHelper.getValue("RECORD_VIDEO").equals("true")) {
-            CaptureHelper.stopRecord();
         }
     }
 
@@ -62,20 +52,11 @@ public class TestListener implements ITestListener {
             CaptureHelper.screenshotFail(iTestResult.getName());
         }
 
-        //Nếu giá trị "RECORD_VIDEO" = true thì nó sẽ record video, bằng false thì không record video
-        if (PropertiesHelper.getValue("RECORD_VIDEO").equals("true")) {
-            CaptureHelper.stopRecord();
-        }
     }
 
     //Chạy mỗi khi 1 ca kiểm thử bị bỏ qua (sau quá trình chạy). Việc ghi đè này cho phép lớp con có thể thay đổi hoặc mở rộng hành vi của phương thức đó.
     @Override //Ghi đè phương thức onTestSkipped của giao diện ITestListener (lớp cha)
     public void onTestSkipped(ITestResult iTestResult) {
         LogUtils.warn("\uD83D\uDD1C Test case " + iTestResult.getName() + " skipped.");
-
-        //Nếu giá trị "RECORD_VIDEO" = true thì nó sẽ record video, bằng false thì không record video
-        if (PropertiesHelper.getValue("RECORD_VIDEO").equals("true")) {
-            CaptureHelper.stopRecord();
-        }
     }
 }

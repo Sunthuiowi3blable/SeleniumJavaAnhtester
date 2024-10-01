@@ -93,7 +93,7 @@ public class CategoryPage extends CommonPage {
         WebUI.clickElement(buttonType);
 
         WebUI.clickElement(buttonBrowseBanner);
-        WebUI.waitForPageLoaded();
+        WebUI.sleep(2);
         WebUI.setText(inputSearchBanner, data.get("BANNER"));
         WebUI.setKey(inputSearchBanner, Keys.ENTER);
         WebUI.sleep(2);
@@ -104,7 +104,7 @@ public class CategoryPage extends CommonPage {
         WebUI.sleep(2);
 
         WebUI.clickElement(buttonBrowseIcon);
-        WebUI.waitForPageLoaded();
+        WebUI.sleep(2);
         WebUI.setText(inputSearchIcon, data.get("ICON"));
         WebUI.setKey(inputSearchIcon, Keys.ENTER);
         WebUI.sleep(2);
@@ -138,6 +138,14 @@ public class CategoryPage extends CommonPage {
         Assert.assertTrue(WebUI.checkElementExist(newCategory), "FAIL!! The category name not display in table.");
         WebUI.assertEquals(WebUI.getElementText(newCategory), data.get("NAME"), "FAIL!! The new category not match.");
         System.out.println("New Category: " + WebUI.getElementText(newCategory));
+    }
+
+    //Hàm xử lý bỏ trống thông tin
+    public void verifyInfomationNull(){
+        WebUI.waitForPageLoaded();
+        String validationMessage = WebUI.getElementAttribute(inputName, "validationMessage");
+
+        WebUI.assertEquals(validationMessage, "Please fill out this field.", "FAIL. The content of error massage not match!");
     }
 
     //Hàm kiểm tra lại các giá trị thông tin vừa được Add vào
